@@ -24,7 +24,7 @@ public class Stop {
     private String code;
 
     private String name;
-    private String derails;
+    private String details;
 
     @OneToMany(mappedBy = "initialStop")
     private Set<Trip> tripsByInitialStop;

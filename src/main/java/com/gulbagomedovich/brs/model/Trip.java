@@ -23,7 +23,7 @@ public class Trip {
     private int fare;
 
     @Temporal(TemporalType.TIME)
-    private Date tripTime;
+    private Date journeyTime;
 
     @ManyToOne
     @JoinColumn(name = "bus_id")

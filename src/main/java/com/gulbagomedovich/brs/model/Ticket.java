@@ -25,7 +25,7 @@ public class Ticket {
     private boolean cancellable;
 
     @Temporal(TemporalType.TIMESTAMP)
-    private Date tripDate;
+    private Date journeyDate;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
