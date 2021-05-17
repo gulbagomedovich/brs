@@ -2,6 +2,7 @@ package com.gulbagomedovich.brs.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.gulbagomedovich.brs.model.TripSchedule;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,5 +34,18 @@ public class TripScheduleDto {
     private String busCode;
     private String initialStop;
     private String destinationStop;
+
+    public static TripScheduleDto toTripScheduleDto(TripSchedule tripSchedule) {
+        return new TripScheduleDto()
+                .setId(tripSchedule.getId())
+                .setAvailableSeats(tripSchedule.getAvailableSeats())
+                .setTripDate(tripSchedule.getTripDate())
+                .setTripId(tripSchedule.getTrip().getId())
+                .setFare(tripSchedule.getTrip().getFare())
+                .setJourneyTime(tripSchedule.getTrip().getJourneyTime())
+                .setBusCode(tripSchedule.getTrip().getBus().getCode())
+                .setInitialStop(tripSchedule.getTrip().getInitialStop().getName())
+                .setDestinationStop(tripSchedule.getTrip().getDestinationStop().getName());
+    }
 
 }

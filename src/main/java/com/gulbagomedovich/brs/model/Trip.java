@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -21,9 +20,7 @@ public class Trip {
     private Long id;
 
     private int fare;
-
-    @Temporal(TemporalType.TIME)
-    private Date journeyTime;
+    private int journeyTime;
 
     @ManyToOne
     @JoinColumn(name = "bus_id")
