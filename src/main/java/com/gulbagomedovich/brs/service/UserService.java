@@ -59,8 +59,19 @@ public class UserService {
                     .setFirstName(userDto.getFirstName())
                     .setLastName(userDto.getLastName())
                     .setMobileNumber(userDto.getMobileNumber())
-                    .setEmail(userDto.getEmail())
-                    .setPassword(bCryptPasswordEncoder.encode(userDto.getPassword()));
+                    .setEmail(userDto.getEmail());
+
+            return UserDto.toUserDto(userRepository.save(user));
+        } else {
+            return null;
+        }
+    }
+
+    public UserDto changePassword(UserDto userDto) {
+        User user = userRepository.findByEmail(userDto.getEmail());
+
+        if (user != null) {
+            user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
 
             return UserDto.toUserDto(userRepository.save(user));
         } else {
