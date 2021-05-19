@@ -6,11 +6,13 @@ import com.gulbagomedovich.brs.model.User;
 import com.gulbagomedovich.brs.model.UserRoles;
 import com.gulbagomedovich.brs.repository.RoleRepository;
 import com.gulbagomedovich.brs.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+@RequiredArgsConstructor
 @Service
 public class UserService {
 
@@ -19,12 +21,6 @@ public class UserService {
     private final RoleRepository roleRepository;
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-
-    public UserService(UserRepository userRepository, RoleRepository roleRepository, BCryptPasswordEncoder bCryptPasswordEncoder) {
-        this.userRepository = userRepository;
-        this.roleRepository = roleRepository;
-        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-    }
 
     public UserDto signup(UserDto userDto) {
         User user = userRepository.findByEmail(userDto.getEmail());

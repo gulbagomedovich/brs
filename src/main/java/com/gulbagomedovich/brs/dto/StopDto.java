@@ -2,6 +2,7 @@ package com.gulbagomedovich.brs.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.gulbagomedovich.brs.model.Stop;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -24,6 +25,13 @@ public class StopDto implements Comparable {
     @Override
     public int compareTo(Object o) {
         return this.getName().compareTo(((StopDto) o).getName());
+    }
+
+    public static StopDto toStopDto(Stop stop) {
+        return new StopDto()
+                .setCode(stop.getCode())
+                .setName(stop.getName())
+                .setDetails(stop.getDetails());
     }
 
 }
