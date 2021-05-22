@@ -4,10 +4,7 @@ import com.gulbagomedovich.brs.dto.*;
 import com.gulbagomedovich.brs.service.BusReservationService;
 import com.gulbagomedovich.brs.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -28,13 +25,13 @@ public class BusReservationController {
     }
 
     @GetMapping("/tripsbystops")
-    public List<TripDto> getTripsbystops(TripScheduleDto tripScheduleDto) {
+    public List<TripDto> getTripsByStops(@RequestBody TripScheduleDto tripScheduleDto) {
         return busReservationService.getTripsBetweenStops(
                 tripScheduleDto.getInitialStop(), tripScheduleDto.getDestinationStop());
     }
 
     @GetMapping("/tripschedules")
-    public List<TripScheduleDto> getTripSchedules(TripScheduleDto tripScheduleDto) {
+    public List<TripScheduleDto> getTripSchedules(@RequestBody TripScheduleDto tripScheduleDto) {
         return busReservationService.getTripSchedules(
                 tripScheduleDto.getInitialStop(),
                 tripScheduleDto.getDestinationStop(),
@@ -42,7 +39,7 @@ public class BusReservationController {
     }
 
     @PostMapping("/bookticket")
-    public TicketDto bookTicket(TripScheduleDto tripScheduleDto, Principal principal) {
+    public TicketDto bookTicket(@RequestBody TripScheduleDto tripScheduleDto, Principal principal) {
         UserDto userDto = userService.findUserByEmail(principal.getName());
 
         if (userDto != null) {

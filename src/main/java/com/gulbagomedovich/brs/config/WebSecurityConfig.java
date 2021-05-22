@@ -24,7 +24,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/signup").permitAll()
+                .antMatchers("/api/v1/user/signup").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -48,7 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "from users" +
                         "inner join users_roles on users.id = users_roles.user_id" +
                         "inner join roles on users_roles.role_id = roles.id" +
-                        "where users,email = ?");
+                        "where users.email = ?");
     }
 
 }
