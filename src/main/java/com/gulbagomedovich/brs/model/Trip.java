@@ -22,19 +22,19 @@ public class Trip {
     private int fare;
     private int journeyTime;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bus_id")
     private Bus bus;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "agency_id")
     private Agency agency;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "initialstop_id")
     private Stop initialStop;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "destinationstop_id")
     private Stop destinationStop;
 

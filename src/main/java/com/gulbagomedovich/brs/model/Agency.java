@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -28,14 +27,8 @@ public class Agency {
 
     private String details;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User owner;
-
-    @OneToMany(mappedBy = "agency")
-    private Set<Bus> buses;
-
-    @OneToMany(mappedBy = "agency")
-    private Set<Trip> trips;
 
 }

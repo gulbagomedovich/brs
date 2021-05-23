@@ -27,11 +27,11 @@ public class Ticket {
     @Temporal(TemporalType.TIMESTAMP)
     private Date journeyDate;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User passenger;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "tripschedule_id")
     private TripSchedule tripSchedule;
 

@@ -26,10 +26,7 @@ public class TripSchedule {
     @Temporal(TemporalType.TIMESTAMP)
     private Date tripDate;
 
-    @OneToMany(mappedBy = "tripSchedule")
-    private Set<Ticket> tickets;
-
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "trip_id")
     private Trip trip;
 

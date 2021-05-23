@@ -28,21 +28,12 @@ public class AgencyDto {
 
     private UserDto owner;
 
-    private Set<BusDto> buses;
-
     public static AgencyDto toAgencyDto(Agency agency) {
-        Set<BusDto> tempBuses = new HashSet<>();
-
-        for (Bus bus : agency.getBuses()) {
-            tempBuses.add(BusDto.toBusDto(bus));
-        }
-
         return new AgencyDto()
                 .setCode(agency.getCode())
                 .setName(agency.getName())
                 .setDetails(agency.getDetails())
-                .setOwner(UserDto.toUserDto(agency.getOwner()))
-                .setBuses(tempBuses);
+                .setOwner(UserDto.toUserDto(agency.getOwner()));
     }
 
 }

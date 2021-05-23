@@ -30,25 +30,16 @@ public class UserDto {
 
     private boolean admin;
 
-    private Set<RoleDto> roles;
-
     public String getFullName() {
         return firstName != null ? firstName + " " + lastName : "";
     }
 
     public static UserDto toUserDto(User user) {
-        Set<RoleDto> tempRoles = new HashSet<>();
-
-        for (Role role : user.getRoles()) {
-            tempRoles.add(RoleDto.toRoleDto(role));
-        }
-
         return new UserDto()
                 .setFirstName(user.getFirstName())
                 .setLastName(user.getLastName())
                 .setMobileNumber(user.getMobileNumber())
-                .setEmail(user.getEmail())
-                .setRoles(tempRoles);
+                .setEmail(user.getEmail());
     }
 
 }

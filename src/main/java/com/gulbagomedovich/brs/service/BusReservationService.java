@@ -100,7 +100,6 @@ public class BusReservationService {
         }
     }
 
-    @Transactional
     public BusDto addBus(AgencyDto agencyDto, BusDto busDto) {
         Agency agency = agencyRepository.findByName(agencyDto.getName());
 
@@ -114,10 +113,7 @@ public class BusReservationService {
                         .setCapacity(busDto.getCapacity())
                         .setAgency(agency);
 
-                agency.getBuses().add(busRepository.save(bus));
-                agencyRepository.save(agency);
-
-                return BusDto.toBusDto(bus);
+                return BusDto.toBusDto(busRepository.save(bus));
             } else {
                 return null;
             }
@@ -267,11 +263,10 @@ public class BusReservationService {
                         .setJourneyDate(tripSchedule.get().getTripDate())
                         .setPassenger(user);
 
-                ticketRepository.save(ticket);
                 tripSchedule.get().setAvailableSeats(tripSchedule.get().getAvailableSeats() - 1);
                 tripScheduleRepository.save(tripSchedule.get());
 
-                return TicketDto.toTicketDto(ticket);
+                return TicketDto.toTicketDto(ticketRepository.save(ticket));
             } else {
                 return null;
             }

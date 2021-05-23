@@ -6,7 +6,6 @@ import lombok.Setter;
 import lombok.experimental.Accessors;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -25,11 +24,5 @@ public class Stop {
 
     private String name;
     private String details;
-
-    @OneToMany(mappedBy = "initialStop")
-    private Set<Trip> tripsByInitialStop;
-
-    @OneToMany(mappedBy = "destinationStop")
-    private Set<Trip> tripsByDestinationStop;
 
 }
